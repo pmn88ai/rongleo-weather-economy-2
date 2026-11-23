@@ -75,3 +75,25 @@
   bot đã đọc thư nhiệm vụ và bắt đầu làm. KHÔNG commit/push/deploy.
 - Còn chờ: báo cáo `BAO-CAO-DUNG-TRANG-V2.md` của bot + Leo tạo repo GitHub
   rồi mới đẩy code + nối Vercel (URL + anon key nhập trong dashboard Vercel).
+
+### 21:51 — ĐÃ ĐẨY LÊN GITHUB (commit đầu)
+- Repo Leo tạo: https://github.com/pmn88ai/rongleo-weather-economy-2.git
+- Commit `605accb` "Initial: crawler dulieu.dev + schema Supabase + snapshot 23/11"
+  (7 file + data/2026-11-23/ 30 file), nhánh main, push qua Scheduled Task
+  (phiên đăng nhập Leo, pin đang xả nên đã sửa cờ pin), PUSH-EXIT-0, kiểm
+  GitHub API thấy đủ file. Task đã xóa.
+- Bot HP vẫn đang dựng app Next.js — xong nó thì commit + đẩy lần 2.
+  Sau đó Vercel import repo này là deploy được (nhập URL + anon key trong
+  dashboard Vercel).
+
+### 22:18 — BOT LẦN 1 CHẾT (21:44) — BỊ TỪ CHỐI QUYỀN ĐỌC PROJECT GỐC
+- Log dừng 21:44, process opencode không còn. Log ghi: đọc
+  `rongleo-weather-economy/package.json` + `README.md` bị
+  "The user rejected permission to use this specific tool call" (2 lần).
+- Leo bấm từ chối bảng hỏi quyền trên HP lúc bot thử đọc project gốc.
+
+### 22:36 — CHẠY LẠI LẦN 2 (Leo duyệt "không hỏi nữa")
+- Đặt `opencode.json` (`bash + external_directory allow`) vào thư mục _2
+  (tạm thời, xóa sau khi dựng xong; đã thêm vào .gitignore để không commit).
+- Khởi động lại qua WMI, PID 25784, log mới `opencode-dung-trang-v2-run2.log`.
+  Bot đã đọc lại brief + đang liệt kê file data.

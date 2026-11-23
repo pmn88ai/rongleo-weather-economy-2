@@ -4,6 +4,7 @@ node_modules/
 .next/
 out/
 opencode-*.log
+opencode.json
 run_opencode_*.bat
 launch_opencode_*.ps1
 push_*.bat

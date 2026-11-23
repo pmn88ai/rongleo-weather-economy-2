@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-app-bg: var(--app-bg);
+  --color-app-surface: var(--app-surface);
+  --color-app-surface-2: var(--app-surface-2);
+  --color-app-border: var(--app-border);
+  --color-app-text: var(--app-text);
+  --color-app-muted: var(--app-muted);
+  --color-app-accent: var(--app-accent);
+  --color-app-accent-soft: var(--app-accent-soft);
+  --color-app-up: var(--app-up);
+  --color-app-down: var(--app-down);
+  --color-app-gold: var(--app-gold);
+  --max-width-mobile: 480px;
+}
+
+:root {
+  color-scheme: light dark;
+  --app-bg: #f3f5f9;
+  --app-surface: #ffffff;
+  --app-surface-2: #eef2f7;
+  --app-border: #dbe2ec;
+  --app-text: #0f172a;
+  --app-muted: #5b6b82;
+  --app-accent: #1d4ed8;
+  --app-accent-soft: #dbeafe;
+  --app-up: #047857;
+  --app-down: #b91c1c;
+  --app-gold: #a16207;
+  --app-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -18px rgba(15, 23, 42, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-bg: #070b11;
+    --app-surface: #0f172a;
+    --app-surface-2: #141f33;
+    --app-border: #223049;
+    --app-text: #e6edf7;
+    --app-muted: #94a3b8;
+    --app-accent: #7dd3fc;
+    --app-accent-soft: #0c4a6e;
+    --app-up: #34d399;
+    --app-down: #f87171;
+    --app-gold: #fbbf24;
+    --app-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px -24px rgba(0, 0, 0, 0.9);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--app-bg);
+  color: var(--app-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+section[id] {
+  scroll-margin-top: 4.75rem;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+::selection {
+  background: var(--app-accent-soft);
+  color: var(--app-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--app-accent);
+  outline-offset: 2px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--app-border) transparent;
+}
+
+.table-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+  background: var(--app-border);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
