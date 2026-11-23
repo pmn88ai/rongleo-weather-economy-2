@@ -1,0 +1,12 @@
+.env.local
+.env*.local
+node_modules/
+.next/
+out/
+opencode-*.log
+run_opencode_*.bat
+launch_opencode_*.ps1
+push_*.bat
+push_*.log
+*.log
+.DS_Store

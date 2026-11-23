@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-23",
+  "started_at": "2026-11-23T14:09:17.415976+00:00",
+  "supabase": false,
+  "endpoints": {
+    "summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 77312,
+      "rows": null
+    },
+    "exchange": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 109064,
+      "rows": 500
+    },
+    "gold": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 129612,
+      "rows": 500
+    },
+    "silver": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 131871,
+      "rows": 500
+    },
+    "fuel": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 99118,
+      "rows": 500
+    },
+    "coffee": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 106373,
+      "rows": 500
+    },
+    "rice": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 12061,
+      "rows": 56
+    },
+    "pepper": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 116293,
+      "rows": 500
+    },
+    "oil": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 116041,
+      "rows": 321
+    },
+    "commodities": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 155552,
+      "rows": 500
+    },
+    "interest": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 69710,
+      "rows": 313
+    },
+    "indicators": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 26823,
+      "rows": 120
+    },
+    "weather": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 133986,
+      "rows": 500
+    },
+    "groceries_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 5286,
+      "rows": 26
+    },
+    "groceries_stores": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 1034,
+      "rows": 10
+    },
+    "mombaby_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 2229,
+      "rows": 12
+    },
+    "mombaby_stores": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 472,
+      "rows": 4
+    },
+    "drugs_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 932,
+      "rows": 5
+    },
+    "electronics_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 1841,
+      "rows": 7
+    },
+    "bakery_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 723,
+      "rows": 4
+    },
+    "furniture_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 881,
+      "rows": 4
+    },
+    "vehicles_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 269999,
+      "rows": 1085
+    },
+    "cosmetics_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 1254,
+      "rows": 7
+    },
+    "re_summary": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 404165,
+      "rows": 1569
+    },
+    "re_benchmarks": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 52698,
+      "rows": 200
+    },
+    "re_trends": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 5223,
+      "rows": 31
+    },
+    "re_landprices": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 87923,
+      "rows": 200
+    },
+    "re_stores": {
+      "status": "ok",
+      "http": 200,
+      "bytes": 13739,
+      "rows": 128
+    },
+    "food_index": {
+      "status": "ok",
+      "http": 200,
+      "latest": 100.98,
+      "latest_month": "09/2026"
+    }
+  },
+  "finished_at": "2026-11-23T14:10:28.985157+00:00",
+  "ok": 29,
+  "failed": 0,
+  "api_calls_used": 28
+}
