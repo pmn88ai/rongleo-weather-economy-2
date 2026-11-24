@@ -126,6 +126,33 @@
 - File `supabase_schema.sql` (đã thêm GRANT) đã sync lên HP nhưng CHƯA
   commit/push — repo đang chậm 1 file, mai commit cùng lượt khác.
 
+### 24/11 sáng — ĐẨY NỐT 2 COMMIT + CHUYỂN CRAWLER SANG HP
+- Commit `ee02d1d` (schema có GRANT + PROGRESS bàn giao) đã push lên GitHub.
+- Crawler chuyển sang HP (VM không có service key, không đưa key qua chat):
+  `crawl_dulieu.py` sửa thêm `load_dotenv_fallback()` — đọc key từ
+  `.env.local` sẵn trên HP (NEXT_PUBLIC_SUPABASE_URL /
+  SUPABASE_SERVICE_ROLE_KEY), không in key ra log. Commit `009e67a` đã push.
+- Chạy thử trên HP sáng 24/11: **29 ok / 0 lỗi, supabase=có** — dữ liệu
+  24/11 đã vào Supabase (trang sẽ hiện số 24/11 sau khi deploy mới).
+- Task Scheduler HP `CrawlDulieuDaily`: chạy `run_crawl_daily.bat` hằng ngày
+  **09:35** (cờ pin đã sửa), trạng thái Ready, lần chạy tới 24/11 09:35.
+  Log: `crawl-daily.log` trong thư mục project.
+- Cron VM `crawl-dulieu-daily` (09:34) đã XÓA — HP làm chủ cào hằng ngày,
+  tránh cào trùng. Sau khi Vercel deploy xong sẽ đặt thêm 1 cron VM kiểm
+  trang live có số ngày mới không (cần URL deploy).
+
+### 24/11 08:23 — VERCEL KẸT Ở ĐĂNG NHẬP GOOGLE (mật khẩu bị từ chối)
+- Browser task sửa Vercel (07:40–08:23) KHÔNG vào được Vercel: đăng nhập
+  GitHub qua Google (pmn88.ai@gmail.com) thì **Google báo "Mật khẩu không
+  chính xác"** với mật khẩu vừa lưu qua Secure Vault. Thử đăng nhập trực tiếp
+  bằng mật khẩu GitHub thì GitHub báo tài khoản này **không hỗ trợ đăng nhập
+  bằng mật khẩu** — Google là đường duy nhất.
+- Trình duyệt đang dừng ở trang nhập mật khẩu Google, CHƯA gửi lại mật khẩu
+  mới (sợ gửi sai nữa thì khóa tài khoản). Chưa đổi gì trên Vercel.
+- Đã gửi Leo bảng nhập liệu mới (google.com, pmn88.ai@gmail.com) để nhập lại
+  mật khẩu Google ĐÚNG. Khi Leo nhập xong → chạy lại browser task để nó
+  đăng nhập tiếp, sửa preset → Next.js, kiểm env Supabase, redeploy.
+
 ## BÀN GIAO — cuối ngày 23/11/2026 (đã xong / còn chờ mai)
 - ĐÃ XONG: crawler dulieu.dev (29/29, cron hằng ngày 09:34) · schema + GRANT
   · snapshot 23/11 (30 file) · app Next.js 16 (24 mục, mobile 390×844,

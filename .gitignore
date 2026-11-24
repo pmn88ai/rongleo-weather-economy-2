@@ -12,3 +12,5 @@ push_*.bat
 push_*.log
 *.log
 .DS_Store
+
+.vercel
