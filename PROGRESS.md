@@ -97,3 +97,60 @@
   (tạm thời, xóa sau khi dựng xong; đã thêm vào .gitignore để không commit).
 - Khởi động lại qua WMI, PID 25784, log mới `opencode-dung-trang-v2-run2.log`.
   Bot đã đọc lại brief + đang liệt kê file data.
+
+### 23:04 — BOT XONG, ĐÃ KIỂM CHỨNG + ĐẨY LẦN 2 (commit 6cbb45e)
+- App Next.js 16.2.9 + Tailwind v4, đủ 24 mục, mobile-first 390×844
+  (0 tràn ngang, drawer 366px, bottom nav 5 mục). Kiểm từ log run2:
+  `npm run build` Compiled 2.8s PASS, `npm run lint` LINT_EXIT=0,
+  dev/prod STATUS 200 (1,3 MB, chứa số thật 26.020). Số đối chiếu khớp JSON
+  23/11 (USD bán 26.020, vàng AVPL 12.980/13.480, CPI 5,09, BĐS HCM 5,8 tỷ).
+- `.env.local` bot copy đúng 3 dòng Supabase, git check-ignore xác nhận chặn.
+- Commit `6cbb45e` push qua Scheduled Task, PUSH-EXIT-0, GitHub API xác nhận;
+  task đã xóa. `opencode.json` tạm đã xóa khỏi HP sau khi bot xong.
+- **VƯỚNG — bảng Supabase chưa có:** seed `npm run seed` lỗi PGRST205
+  (bảng `public.dulieu_snapshots` chưa tồn tại), 0 dòng. Trang fallback về
+  snapshot local 23/11 + banner cảnh báo. App trỏ project
+  `hdfntmgspetusorscgux` (theo .env.local project gốc) — **đính chính ghi
+  chú 21:17:** project chung KHÔNG phải `hrxdntchtsloffphwvvr`; file thực
+  tế trỏ `hdfntmgspetusorscgux`. Leo nói 21:39 "chạy sql rồi" nhưng bảng
+  vẫn chưa có ở project này → có thể chạy nhầm project.
+- Vercel: Leo đã lưu xong 2 biến `NEXT_PUBLIC_*` (loại "Cấu hình" — loại
+  "Bí mật" bị Vercel từ chối vì NEXT_PUBLIC_ vốn lộ ra trình duyệt).
+  Import repo là deploy được (hiện dữ liệu local + banner); sau khi chạy
+  SQL đúng project + seed, trang tự đọc live, không cần deploy lại.
+
+### 23:35 — SEED OK 29/29 + BÀN GIAO CUỐI NGÀY (Leo: "mai tính")
+- Leo chạy 4 dòng GRANT trong SQL Editor → chạy lại `npm run seed`:
+  **29 OK, 0 lỗi, Supabase có 29 dòng cho ngày 2026-11-23.** Trang giờ đọc
+  live từ Supabase (banner cảnh báo sẽ mất khi deploy mới đọc được dữ liệu).
+- File `supabase_schema.sql` (đã thêm GRANT) đã sync lên HP nhưng CHƯA
+  commit/push — repo đang chậm 1 file, mai commit cùng lượt khác.
+
+## BÀN GIAO — cuối ngày 23/11/2026 (đã xong / còn chờ mai)
+- ĐÃ XONG: crawler dulieu.dev (29/29, cron hằng ngày 09:34) · schema + GRANT
+  · snapshot 23/11 (30 file) · app Next.js 16 (24 mục, mobile 390×844,
+  build+lint PASS) · push GitHub 2 commit (605accb, 6cbb45e) · biến môi
+  trường Vercel đã lưu · bảng Supabase + seed 29/29 OK (project
+  `jnjkddxrvpyfytcnqfbz`).
+- MAI LÀM: (1) Vercel: đăng nhập bằng GitHub qua Google
+  (mail pmn88.ai@gmail.com — GitHub KHÔNG có mật khẩu riêng, mật khẩu là
+  mật khẩu Google; bấm "Continue with Google" trên trang GitHub) → sửa
+  Framework Preset thành Next.js → deploy lại → kiểm trang live mất banner,
+  hiện "Supabase · live". Browser task sửa Vercel đã mở sẽ hết hạn sau ~2h,
+  mai làm lại từ đầu. (2) Commit + push `supabase_schema.sql` bản có GRANT.
+  (3) Crawler trên VM còn thiếu service key project mới
+  `jnjkddxrvpyfytcnqfbz` (cron 09:34 sẽ lỗi ghi nếu không có) — cần cách đưa
+  key lên VM mà không qua chat (key không paste vào chat). (4) Kiểm trang live
+  sau deploy: đủ 24 mục, mobile không tràn, số liệu ngày mới nhất.
+- Leo đã sửa 3 dòng Supabase trong .env.local HP → URL đúng
+  `jnjkddxrvpyfytcnqfbz.supabase.co`. Kiểm JWT: anon role=anon,
+  service key role=service_role — khóa đúng.
+- Seed vẫn lỗi: `permission denied for table dulieu_snapshots` ngay ở
+  SELECT thăm dò → bảng ĐÃ TỒN TẠI (hết lỗi PGRST205), nhưng role không
+  có quyền. Nguyên nhân: file `supabase_schema.sql` tao viết THIẾU GRANT —
+  bảng tạo bằng SQL Editor thuộc về postgres, các role khác không có quyền
+  mặc định dù RLS đã tắt. Đã bổ sung 4 dòng GRANT vào file (schema + sequence
+  dulieu_crawl_runs_id_seq) và sync lên HP. Chờ Leo chạy 4 dòng GRANT trong
+  SQL Editor project jnjkddxrvpyfytcnqfbz rồi chạy lại seed.
+- Vercel: browser task đang sửa Framework Preset → Next.js + redeploy;
+  Leo cho biết đăng nhập GitHub bằng mail pmn88.ai@gmail.com.

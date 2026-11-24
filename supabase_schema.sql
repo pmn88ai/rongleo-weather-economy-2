@@ -39,6 +39,15 @@ create table if not exists public.dulieu_crawl_runs (
 alter table public.dulieu_snapshots disable row level security;
 alter table public.dulieu_crawl_runs disable row level security;
 
+-- QUYEN TRUY CAP (bo sung 23/11 sau loi "permission denied for table"):
+-- Bang tao bang SQL Editor thuoc ve role postgres; cac role anon /
+-- authenticated / service_role KHONG co quyen mac dinh du RLS da tat.
+-- Khong co GRANT thi ca SELECT lan INSERT deu bi "permission denied".
+grant usage on schema public to anon, authenticated, service_role;
+grant all on table public.dulieu_snapshots to anon, authenticated, service_role;
+grant all on table public.dulieu_crawl_runs to anon, authenticated, service_role;
+grant all on sequence public.dulieu_crawl_runs_id_seq to anon, authenticated, service_role;
+
 -- VERIFY (chay sau khi tao bang, bao lai 4 so cho Muse):
 --   select count(*) from public.dulieu_snapshots;  -- ky vong 0
 --   select count(*) from public.dulieu_crawl_runs; -- ky vong 0
