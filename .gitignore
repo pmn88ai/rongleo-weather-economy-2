@@ -6,6 +6,7 @@ out/
 opencode-*.log
 opencode.json
 run_opencode_*.bat
+run_crawl_daily.bat
 launch_opencode_*.ps1
 push_*.bat
 push_*.log

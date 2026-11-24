@@ -125,7 +125,42 @@ def supabase_upsert(url, key, endpoint, date, payload):
         return r.status
 
 
+def load_dotenv_fallback():
+    """Doc them key Supabase tu file .env trong thu muc crawler.
+
+    Thu tu uu tien: bien moi truong > .env.supabase > .env.local.
+    .env.local dung ten bien cua app Next.js (NEXT_PUBLIC_SUPABASE_URL,
+    SUPABASE_SERVICE_ROLE_KEY) — doc de crawler chay duoc tren HP, noi
+    .env.local da co san key, ma khong can copy key di dau.
+    Khong in key ra log.
+    """
+    for fname in (".env.supabase", ".env.local"):
+        p = os.path.join(HERE, fname)
+        if not os.path.exists(p):
+            continue
+        try:
+            with open(p, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    k, v = k.strip(), v.strip().strip('"').strip("'")
+                    if k == "NEXT_PUBLIC_SUPABASE_URL" \
+                            and not os.environ.get("SUPABASE_URL"):
+                        os.environ["SUPABASE_URL"] = v
+                    elif k == "SUPABASE_SERVICE_ROLE_KEY" \
+                            and not os.environ.get("SUPABASE_SERVICE_KEY"):
+                        os.environ["SUPABASE_SERVICE_KEY"] = v
+                    elif k in ("SUPABASE_URL", "SUPABASE_SERVICE_KEY") \
+                            and not os.environ.get(k):
+                        os.environ[k] = v
+        except OSError:
+            pass
+
+
 def main():
+    load_dotenv_fallback()
     date = sys.argv[sys.argv.index("--date") + 1] \
         if "--date" in sys.argv else \
         datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d")
